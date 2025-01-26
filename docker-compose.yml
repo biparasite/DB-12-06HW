@@ -1,0 +1,40 @@
+services:
+  mysql-master:
+    image: mysql:latest
+    container_name: mysql-master
+    volumes:
+      - ./mysql-master:/var/lib/mysql
+      - ./master/master.cnf:/etc/mysql/conf.d/master.cnf
+      - ./master/master.sql:/docker-entrypoint-initdb.d/start.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_USER: replication_user
+      MYSQL_PASSWORD: replication_user
+    ports:
+      - "3306:3306"
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    networks:
+      - overlay
+    restart: always
+
+  mysql-slave1:
+    image: mysql:latest
+    container_name: mysql-slave1
+    volumes:
+      - ./mysql-slave:/var/lib/mysql
+      - ./slave/slave1.cnf:/etc/mysql/conf.d/slave1.cnf
+    depends_on:
+      - mysql-master
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_USER: replication_user
+      MYSQL_PASSWORD: replication_user
+    ports:
+      - "3307:3306"
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    networks:
+      - overlay
+    restart: always
+
+networks:
+  overlay:
