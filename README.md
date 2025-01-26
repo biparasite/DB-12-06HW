@@ -89,13 +89,13 @@ SHOW BINARY LOG STATUS\G
 
 <details> <summary>Скриншот к заданию 2 Primary</summary>
 
-![task2](https://github.com/biparasite/DB-12-06HW/blob/main/task_2.2.png "task2")
+![task2](https://github.com/biparasite/DB-12-06HW/blob/main/task2.2.png "task2")
 
 </details>
 
 <details> <summary>Скриншот к заданию 2 Replica</summary>
 
-![task2](https://github.com/biparasite/DB-12-06HW/blob/main/task_2.1.png "task2")
+![task2](https://github.com/biparasite/DB-12-06HW/blob/main/task2.1.png "task2")
 
 </details>
 
